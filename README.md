@@ -43,7 +43,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|group_name|string|null: false, unipue: true|
+|name|string|null: false, unipue: true|
 
 ### Association
 - has_many :groups_users
