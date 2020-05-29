@@ -1,13 +1,13 @@
 .side-bar
   .side-bar__user-name
     .side-bar__user-name__box
-      .side-bar__user-name__box__name
+      %h3.side-bar__user-name__box__name
         =current_user.name
-      .side-bar__user-name__box__menu
-        .side-bar__user-name__box__menu__new-group
+      %ul.side-bar__user-name__box__menu
+        %li.side-bar__user-name__box__menu__new-group
           =link_to new_group_path do
-            =icon('fas', 'edit')
-        .side-bar__user-name__box__menu__edit-user
+            =icon('fas', 'edit', class: 'icon')
+        %li.side-bar__user-name__box__menu__edit-user
           =link_to edit_user_path(current_user) do
             =icon('fas', 'cog', class: 'icon')
 
@@ -16,8 +16,8 @@
     .side-bar__group-list__box
     - current_user.groups.each do |group|
       .group
-        = link_to '#' do
+        = link_to group_messages_path(group) do
           .seid-bar__group-list__name
             = group.name
           .side-bar__group-list__box__message
-            メッセージはまだありません。
+            = group.show_last_message
