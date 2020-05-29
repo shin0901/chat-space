@@ -2,36 +2,29 @@
   .chat-main__group-info
     .chat-main__group-info__left-box
       .chat-main__group-info__left-box__group-name
-        test
-      .chat-main__group-info__left-box__member-list
-        Member : 
-        .chat-main__group-info__left-box__member-list__member
-          mori
+        = @group.name
+      %ul.chat-main__group-info__left-box__member-list
+        Member :
+        - @group.users.each do |user|
+          %li.chat-main__group-info__left-box__member-list__member
+            = user.name
+
     .chat-main__group-info__edit-btn
-      =link_to "#" do
+      =link_to edit_group_path(@group.id) do
         Edit
+
   .chat-main__message-list
-    .chat-main__message-list__box
-      .chat-main__message-list__box__info
-        .chat-main__message-list__box__info__tlak-name
-          mori
-        .chat-main__message-list__box__info__data
-          2020/05/18/(tue) 09:00
-      .chat-main__message-list__box__text
-        テスト
-    .chat-main__message-list__box
-      .chat-main__message-list__box__info
-        .chat-main__message-list__box__info__tlak-name
-          mori
-        .chat-main__message-list__box__info__data
-          2020/05/18/(tue) 09:00
-      .chat-main__message-list__box__text
-        テスト
+    =  render partial: 'message', collection: @messages
+
   .chat-main__message-form
-    %form.new_message
-      .chat-main__message-form__box
-        %input{type: "text", class: "chat-main__message-form__box__text", placeholder: "text a message"}
-        %label{class: "form-image",for: "image"}
-          = icon('fa', 'image')
-          %input{type: "file", id: "image", class: "form-image__file"}
-      %input{type: "submit", class: "submit-btn"} 
+    = form_for [@group, @message] do |f|
+      .form_box
+        = f.text_field :content, class: 'form_box-text', placeholder: 'type a message'
+        = f.label :image, class: 'form_box-image' do
+          = icon('fas', 'image')
+          = f.file_field :image, class: 'form_box-image__file'
+      = f.submit 'Send', class: 'submit-btn'
+
+
+
+
