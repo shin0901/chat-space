@@ -7,7 +7,7 @@
 }
 
   .chat-main{
-   height: 100vh;
+    height: 100vh;
     width: calc(100vw - 300px);
     background-color: #ffffff;
     &__group-info{
@@ -56,6 +56,7 @@
       height: calc(100vh - 190px);
       background-color: #fafafa;
       padding: 35px 40px 40px;
+      overflow: scroll;
       &__box{
         margin-bottom: 46px;
         &__info{
