@@ -13,11 +13,10 @@
 
         
   .side-bar__group-list
-    .side-bar__group-list__box
     - current_user.groups.each do |group|
-      .group
-        = link_to group_messages_path(group) do
-          .seid-bar__group-list__name
+      = link_to group_messages_path(group) do
+        .group
+          %p.seid-bar__group-list__name
             = group.name
-          .side-bar__group-list__box__message
+          %p.side-bar__group-list__box__message
             = group.show_last_message
